@@ -1,0 +1,47 @@
+version: "3.4"
+services:
+    redis:
+        image: redis:alpine
+        container_name: judgement-redis
+        ports:
+            - "6379:6379"  
+
+    mysql:
+        image: mysql:5.7
+        container_name: judgement-mysql
+        working_dir: /application
+        volumes:
+            - .:/application
+        environment:
+            - MYSQL_ROOT_PASSWORD=judgement@2018root
+            - MYSQL_DATABASE=judgement
+            - MYSQL_USER=judgement
+            - MYSQL_PASSWORD=judgement@2018
+        ports:
+            - "3306:3306"
+
+    php:
+        image: mehrdadkhah/php7
+        container_name: judgement-php7
+        links:
+            - mysql:mysql
+            - redis:redis
+        ports:
+            - "9000:9000"
+        volumes:
+            - .:/application
+            - ./:/var/www/html/judgement
+
+    webserver:
+        image: nginx
+        container_name: judgement-webserver
+        working_dir: /application
+        links:
+            - php:fpm
+        volumes:
+            - .:/application
+            - ./:/var/www/html/judgement
+            - ./storage/logs/nginx/:/var/log/nginx
+            - ./docker/nginx_conf:/etc/nginx/conf.d/
+        ports:
+            - "8080:80"
