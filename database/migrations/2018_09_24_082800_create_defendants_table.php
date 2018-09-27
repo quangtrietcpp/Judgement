@@ -15,7 +15,7 @@ class CreateDefendantsTable extends Migration
     {
         Schema::create('defendants', function (Blueprint $table) {
             $table->string('defendant_id', 12);
-            $table->string('judgement_id', 12);
+            $table->integer('judgement_id')->unsigned();
             $table->primary('defendant_id', 'judgement_id');
             $table->foreign('judgement_id')->references('judgement_id')->on('judgements');
             $table->text('crime');
