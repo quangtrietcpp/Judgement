@@ -14,6 +14,7 @@ class Judgement extends Model
         'deleted_at'
     ];
     protected $fillable = [
+        'judgement_no',
         'type',
         'date_created',
         'court',
@@ -35,6 +36,7 @@ class Judgement extends Model
     public function get($judgementId)
     {
         return Judgement::select(
+            'judgement_no',
             'type',
             'date_created',
             'court',
