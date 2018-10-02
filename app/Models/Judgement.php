@@ -31,7 +31,7 @@ class Judgement extends Model
 
     public static function getList()
     {
-        return Judgement::all();
+        return Judgement::orderBy('date_created', 'desc');
     }
     public function get($judgementId)
     {

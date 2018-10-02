@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-})->name('homepage');
+})->name('homepage');*/
+Route::get('/', 'JudgementController@index')
+    ->name('top');
 Route::get('login', 'AuthController@index')
     ->name('login');
 Route::post('login', 'AuthController@login')
