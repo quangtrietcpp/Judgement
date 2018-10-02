@@ -2,29 +2,37 @@
 <html lang="vi">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=1024">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}">
     @yield('plugin_styles')
     @yield('inline_styles')
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="top_logo">
-                <img src="{{ asset('web/images/logo.png') }}" alt="{{ strtolower(env('APP_SITE')) }}">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <img class="navbar-brand logo" src="{{ asset('image/quochuy.png') }}" alt="{{ strtolower(env('APP_SITE')) }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="{{ route('top') }}"><button>Trang chủ</button></a>
+                    </li>
+                    <li class="nav-item">
+                        @auth
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><button>Đăng xuất</button></a>
+                        {{ Form::open(['url' => route('logout'), 'method' => 'POST', 'id' => 'logout-form', 'style' => 'display:none;']) }}
+                        {{ Form::close() }}
+                    @else
+                        <a href="{{ route('login') }}"><button>Đăng nhập</button></a>
+                    @endauth
+                    </li>
+                </ul>
             </div>
-            <ul>
-                <li><a href="{{ route('top') }}">Trang chủ</a></li>
-                @auth
-                    <li class="login"> <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng xuất</a></li>
-                    {{ Form::open(['url' => route('logout'), 'method' => 'POST', 'id' => 'logout-form', 'style' => 'display:none;']) }}
-                    {{ Form::close() }}
-                @else
-                    <li class="login"><a href="{{ route('login') }}" >Đăng nhập</a></li>
-                @endauth
-            </ul>
-        </div>
+        </nav>
     </header>
 
     <div class="wrapper">
