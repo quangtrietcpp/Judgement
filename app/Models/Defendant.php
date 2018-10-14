@@ -76,4 +76,14 @@ class Defendant extends Model
     {
         return $this->belongsToMany('App\Models\Judgement', 'defendant_judgement', 'judgement_id', 'defendant_id');
     }
+
+    const GENDER_MALE = 0;
+    const GENDER_FEMALE = 1;
+    const GENDER_OTHER = 2;
+
+    public static $genders = [
+        self::GENDER_MALE => 'Nam',
+        self::GENDER_FEMALE => 'Nữ',
+        self::GENDER_OTHER => 'Khác',
+    ];
 }
