@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Web as Requests;
-use App\Services\AuthServiceInterface;
 use App\Models as Database;
 use Cookie;
 
@@ -15,17 +14,6 @@ class AuthController extends Controller
 {
     use AuthenticatesUsers {
         logout as performLogout;
-    }
-
-    protected $authService;
-
-    /**
-     * Constructor
-     */
-    public function __construct(AuthServiceInterface $authService)
-    {
-        $this->middleware('guest')->except('logout');
-        $this->authService = $authService;
     }
 
     /**
