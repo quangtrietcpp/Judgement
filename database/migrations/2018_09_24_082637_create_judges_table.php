@@ -20,7 +20,7 @@ class CreateJudgesTable extends Migration
             $table->date('date_of_birth');
             $table->string('place_of_birth');
             $table->string('address');
-            $table->string('phone');
+            $table->string('phone', 10);
             $table->string('email');
             $table->integer('gender');
             $table->integer('position');

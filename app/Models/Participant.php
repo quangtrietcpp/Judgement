@@ -101,6 +101,6 @@ class Participant extends Model
         self::ROLE_LAWYER_CIVIL_DEFENDANT => 'Người bào chữa cho bị đơn dân sự',
         self::ROLE_SUBORNER => 'Người làm chứng',
         self::ROLE_RELATED_PERSON => 'Người có quyền lợi, nghĩa vụ liên quan',
-        self::GENDER_OTHERS => 'Người tham gia tố tụng khác',
+        self::ROLE_OTHERS => 'Người tham gia tố tụng khác',
     ];
 }
