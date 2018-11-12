@@ -81,5 +81,13 @@ class Judge extends Model
         self::GENDER_OTHER => 'Khác',
     ];
 
+    const POSITION_MONITOR = 0;
+    const POSITION_VICE_MONITOR = 1;
+    const POSITION_JUDGE = 2;
 
+    public static $positions = [
+        self::POSITION_MONITOR => 'Chánh án',
+        self::POSITION_VICE_MONITOR => 'Phó Chánh án',
+        self::POSITION_JUDGE => 'Thẩm phán',
+    ];
 }

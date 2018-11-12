@@ -95,4 +95,14 @@ class Judgement extends Model
     {
         return $this->hasMany('App\Models\Participant', 'judgement_id', 'judgement_id');
     }
+
+    const TYPE_ST = 0;
+    const TYPE_PT = 1;
+    const TYPE_GDT = 2;
+
+    public static $types = [
+        self::TYPE_ST => 'Sơ thẩm',
+        self::TYPE_PT => 'Phúc thẩm',
+        self::TYPE_GDT => 'Giám đốc thẩm',
+    ];
 }

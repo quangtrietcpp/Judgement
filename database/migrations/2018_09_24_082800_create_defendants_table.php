@@ -14,11 +14,13 @@ class CreateDefendantsTable extends Migration
     public function up()
     {
         Schema::create('defendants', function (Blueprint $table) {
-            $table->string('defendant_id', 12);
-            $table->integer('judgement_id')->unsigned();
-            $table->primary('defendant_id', 'judgement_id');
+            $table->increments('id');
+            $table->string('judgement_id');
             $table->foreign('judgement_id')->references('judgement_id')->on('judgements');
+            $table->string('name');
+            $table->integer('gender');
             $table->text('crime');
+            $table->string('place_of_birth');
             $table->date('date_of_birth');
             $table->string('address');
             $table->string('occupation');
@@ -27,7 +29,7 @@ class CreateDefendantsTable extends Migration
             $table->string('religion');
             $table->text('previous_conviction');
             $table->text('antecedent');
-            $table->date('captured_on');
+            $table->date('captured_on')->nullable();
             $table->boolean('present');
             $table->timestamps();
             $table->softDeletes();

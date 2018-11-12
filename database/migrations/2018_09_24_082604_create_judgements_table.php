@@ -14,8 +14,7 @@ class CreateJudgementsTable extends Migration
     public function up()
     {
         Schema::create('judgements', function (Blueprint $table) {
-            $table->increments('judgement_id');
-            $table->string('judgement_no', 30);
+            $table->string('judgement_id', 30)->primary();
             $table->integer('type');
             $table->date('date_created');
             $table->string('court');
